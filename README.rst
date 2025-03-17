@@ -76,13 +76,6 @@ Clipboard Indicator versions:
 
 ⌨️ Contributing
 ----------------
-Contributions to this project are welcome.
+Contributions to this project are welcome. Describe your changes in the pull request (I am happy to have unsolicited PRs).
 
-Please follow these guidelines when contributing:
-
-- If you want to contribute code, your best bet is to look for an issue with the label "Up for grabs"
-- DO NOT open unsolicited PRs unless they are for updating translations
-- Look at the list of previous PRs before you open a PR, if your PR conflicts with another, it will be rejected
-- If you have a feature idea, open an issue and discuss it there before implementing. DO NOT open a PR as a platform for discussion
-
-Note: I have very little time to maintain this project, so expect long (months) of response time. Apologies in advance.
+My goal is to maintain this project as a fork that allows contributions more easily than the original project. I will try to keep the project up-to-date with the original project.
