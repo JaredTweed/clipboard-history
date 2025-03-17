@@ -20,6 +20,10 @@ const CLIPBOARD_TYPE = St.ClipboardType.CLIPBOARD;
 
 const INDICATOR_ICON = 'edit-paste-symbolic';
 
+let SHOW_SEARCH_BAR = true;
+let SHOW_PRIVATE_MODE = true;
+let SHOW_SETTINGS_BUTTON = true;
+let SHOW_CLEAR_HISTORY_BUTTON = true;
 let DELAYED_SELECTION_TIMEOUT = 750;
 let MAX_REGISTRY_LENGTH = 15;
 let MAX_ENTRY_LENGTH = 50;
@@ -163,10 +167,7 @@ const ClipboardIndicator = GObject.registerClass({
     let lastIdx = clipHistory.length - 1;
     let clipItemsArr = that.clipItemsRadioGroup;
 
-    /* This create the search entry, which is add to a menuItem.
-    The searchEntry is connected to the function for research.
-    The menu itself is connected to some shitty hack in order to
-    grab the focus of the keyboard. */
+    // --- Search Entry ---
     that._entryItem = new PopupMenu.PopupBaseMenuItem({
       reactive: false,
       can_focus: false
@@ -188,6 +189,7 @@ const ClipboardIndicator = GObject.registerClass({
     );
 
     that._entryItem.add_child(that.searchEntry);
+    // (We'll add the search bar to the menu later only if SHOW_SEARCH_BAR is true)
 
     that.menu.connect('open-state-changed', (self, open) => {
       this._setFocusOnOpenTimeout = setTimeout(() => {
@@ -203,33 +205,25 @@ const ClipboardIndicator = GObject.registerClass({
       }, 50);
     });
 
-    // Create menu sections for items
-    // Favorites
+    // --- Menu Sections (Favorites and History) ---
     that.favoritesSection = new PopupMenu.PopupMenuSection();
-
     that.scrollViewFavoritesMenuSection = new PopupMenu.PopupMenuSection();
     this.favoritesScrollView = new St.ScrollView({
       style_class: 'ci-history-menu-section',
       overlay_scrollbars: true
     });
     this.favoritesScrollView.add_child(that.favoritesSection.actor);
-
     that.scrollViewFavoritesMenuSection.actor.add_child(this.favoritesScrollView);
     this.favoritesSeparator = new PopupMenu.PopupSeparatorMenuItem();
 
-    // History
     that.historySection = new PopupMenu.PopupMenuSection();
-
     that.scrollViewMenuSection = new PopupMenu.PopupMenuSection();
     this.historyScrollView = new St.ScrollView({
       style_class: 'ci-main-menu-section ci-history-menu-section',
       overlay_scrollbars: true
     });
     this.historyScrollView.add_child(that.historySection.actor);
-
     that.scrollViewMenuSection.actor.add_child(this.historyScrollView);
-
-    // Add separator
     this.historySeparator = new PopupMenu.PopupSeparatorMenuItem();
 
     // Add sections ordered according to settings
@@ -242,11 +236,11 @@ const ClipboardIndicator = GObject.registerClass({
       that.menu.addMenuItem(that.scrollViewMenuSection);
     }
 
-    // Private mode switch
+    // --- Private Mode Switch ---
     that.privateModeMenuItem = new PopupMenu.PopupSwitchMenuItem(
-      _("Private mode"), PRIVATEMODE, { reactive: true });
-    that.privateModeMenuItem.connect('toggled',
-      that._onPrivateModeSwitch.bind(that));
+      _("Private mode"), PRIVATEMODE, { reactive: true }
+    );
+    that.privateModeMenuItem.connect('toggled', that._onPrivateModeSwitch.bind(that));
     that.privateModeMenuItem.insert_child_at_index(
       new St.Icon({
         icon_name: 'security-medium-symbolic',
@@ -255,9 +249,9 @@ const ClipboardIndicator = GObject.registerClass({
       }),
       0
     );
-    that.menu.addMenuItem(that.privateModeMenuItem);
+    // Do not add it here—#showElements() will handle it
 
-    // Add 'Clear' button which removes all items from cache
+    // --- Clear History Button ---
     this.clearMenuItem = new PopupMenu.PopupMenuItem(_('Clear history'));
     this.clearMenuItem.insert_child_at_index(
       new St.Icon({
@@ -268,8 +262,9 @@ const ClipboardIndicator = GObject.registerClass({
       0
     );
     this.clearMenuItem.connect('activate', that._removeAll.bind(that));
+    // Do not add it here—#showElements() will handle it
 
-    // Add 'Settings' menu item to open settings
+    // --- Settings Button ---
     this.settingsMenuItem = new PopupMenu.PopupMenuItem(_('Settings'));
     this.settingsMenuItem.insert_child_at_index(
       new St.Icon({
@@ -279,10 +274,10 @@ const ClipboardIndicator = GObject.registerClass({
       }),
       0
     );
-    that.menu.addMenuItem(this.settingsMenuItem);
     this.settingsMenuItem.connect('activate', that._openSettings.bind(that));
+    // Do not add it here—#showElements() will handle it
 
-    // Empty state section
+    // --- Empty State Section ---
     this.emptyStateSection = new St.BoxLayout({
       style_class: 'clipboard-indicator-empty-state',
       vertical: true
@@ -297,13 +292,14 @@ const ClipboardIndicator = GObject.registerClass({
       x_align: Clutter.ActorAlign.CENTER
     }));
 
-    // Add cached items
+    // --- Add Cached Items ---
     clipHistory.forEach(entry => this._addEntry(entry));
 
     if (lastIdx >= 0) {
       that._selectMenuItem(clipItemsArr[lastIdx]);
     }
 
+    // Show/hide elements based on flags
     this.#showElements();
   }
 
@@ -316,39 +312,73 @@ const ClipboardIndicator = GObject.registerClass({
   }
 
   #showElements() {
-    if (this.clipItemsRadioGroup.length > 0) {
-      if (this.menu.box.contains(this._entryItem) === false) {
+    // --- Handle the Search Bar ---
+    if (SHOW_SEARCH_BAR) {
+      if (!this.menu.box.contains(this._entryItem))
         this.menu.box.insert_child_at_index(this._entryItem, 0);
-      }
-      if (this.menu.box.contains(this.clearMenuItem) === false) {
-        this.menu.box.insert_child_below(this.clearMenuItem, this.settingsMenuItem);
-      }
-      if (this.menu.box.contains(this.emptyStateSection) === true) {
-        this.menu.box.remove_child(this.emptyStateSection);
-      }
+    } else {
+      if (this.menu.box.contains(this._entryItem))
+        this.menu.box.remove_child(this._entryItem);
+    }
 
+    // --- Always handle favorites & history separators as before ---
+    if (this.clipItemsRadioGroup.length > 0) {
       if (this.favoritesSection._getMenuItems().length > 0) {
-        if (this.menu.box.contains(this.favoritesSeparator) === false) {
+        if (!this.menu.box.contains(this.favoritesSeparator))
           this.menu.box.insert_child_above(this.favoritesSeparator, this.scrollViewFavoritesMenuSection.actor);
-        }
-      }
-      else if (this.menu.box.contains(this.favoritesSeparator) === true) {
+      } else if (this.menu.box.contains(this.favoritesSeparator)) {
         this.menu.box.remove_child(this.favoritesSeparator);
       }
 
       if (this.historySection._getMenuItems().length > 0) {
-        if (this.menu.box.contains(this.historySeparator) === false) {
+        if (!this.menu.box.contains(this.historySeparator))
           this.menu.box.insert_child_above(this.historySeparator, this.scrollViewMenuSection.actor);
-        }
-      }
-      else if (this.menu.box.contains(this.historySeparator) === true) {
+      } else if (this.menu.box.contains(this.historySeparator)) {
         this.menu.box.remove_child(this.historySeparator);
       }
-    }
-    else if (this.menu.box.contains(this.emptyStateSection) === false) {
+    } else if (!this.menu.box.contains(this.emptyStateSection)) {
       this.#renderEmptyState();
     }
+
+    // --- Handle the Toggled Buttons (Private Mode, Settings, Clear History) ---
+
+    // ERROR:
+    // REMOVING THESE THREE BUTTONS DOES NOT WORK, BUT ADDING THEM DOES.
+    // THESE BUTTONS ARE ORDERED IN THE ORDER IN WHICH THEY ARE ADDED.
+
+    // Private Mode
+    if (SHOW_PRIVATE_MODE) {
+      if (!this.menu.box.contains(this.privateModeMenuItem))
+        this.menu.addMenuItem(this.privateModeMenuItem);
+    } else {
+      if (this.menu.box.contains(this.privateModeMenuItem))
+        this.menu.removeMenuItem(this.privateModeMenuItem);
+    }
+
+    // Settings Button
+    if (SHOW_SETTINGS_BUTTON) {
+      if (!this.menu.box.contains(this.settingsMenuItem))
+        this.menu.addMenuItem(this.settingsMenuItem);
+    } else {
+      if (this.menu.box.contains(this.settingsMenuItem))
+        this.menu.removeMenuItem(this.settingsMenuItem);
+    }
+
+    // Clear History Button
+    if (SHOW_CLEAR_HISTORY_BUTTON) {
+      if (!this.menu.box.contains(this.clearMenuItem)) {
+        // If settings button exists, add clear history button just below it.
+        if (this.menu.box.contains(this.settingsMenuItem))
+          this.menu.box.insert_child_below(this.clearMenuItem, this.settingsMenuItem);
+        else
+          this.menu.addMenuItem(this.clearMenuItem);
+      }
+    } else {
+      if (this.menu.box.contains(this.clearMenuItem))
+        this.menu.box.remove_child(this.clearMenuItem);
+    }
   }
+
 
   #renderEmptyState() {
     this.#hideElements();
@@ -906,6 +936,10 @@ const ClipboardIndicator = GObject.registerClass({
 
   _fetchSettings() {
     const { settings } = this.extension;
+    SHOW_SEARCH_BAR = settings.get_boolean(PrefsFields.SHOW_SEARCH_BAR);
+    SHOW_PRIVATE_MODE = settings.get_boolean(PrefsFields.SHOW_PRIVATE_MODE);
+    SHOW_SETTINGS_BUTTON = settings.get_boolean(PrefsFields.SHOW_SETTINGS_BUTTON);
+    SHOW_CLEAR_HISTORY_BUTTON = settings.get_boolean(PrefsFields.SHOW_CLEAR_HISTORY_BUTTON);
     MAX_REGISTRY_LENGTH = settings.get_int(PrefsFields.HISTORY_SIZE);
     MAX_ENTRY_LENGTH = settings.get_int(PrefsFields.PREVIEW_SIZE);
     CACHE_ONLY_FAVORITE = settings.get_boolean(PrefsFields.CACHE_ONLY_FAVORITE);
@@ -951,6 +985,8 @@ const ClipboardIndicator = GObject.registerClass({
         that._bindShortcuts();
       else
         that._unbindShortcuts();
+
+      that.#showElements();
     } catch (e) {
       console.error('Clipboard Indicator: Failed to update registry');
       console.error(e);
