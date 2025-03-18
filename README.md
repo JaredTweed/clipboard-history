@@ -1,15 +1,8 @@
-# 📋 Clipboard Indicator
-
-<a href="https://extensions.gnome.org/extension/779/clipboard-indicator/">
-  <img src="https://raw.githubusercontent.com/andyholmes/gnome-shell-extensions-badge/eb9af9a1c6f04eb060cb01de6aeb5c84232cd8c0/get-it-on-ego.svg?sanitize=true" alt="Get it on GNOME Extensions" width="180">
-</a>
+# 📋 Clipboard History
 
 Clipboard manager for GNOME
 
 <img src="./screenshot.png" alt="A screenshot of the clipboard manager, showing clipboard history including images" width="400">
-
-This extension is also packaged by the community for many popular Linux distros — search your package manager.
-
 ---
 
 ## 🧰 Features:
@@ -27,22 +20,6 @@ This extension is also packaged by the community for many popular Linux distros 
 - `v` to paste directly from menu
 - `p` to pin item
 - `<Delete>` to delete an item
-
----
-
-## 📦 Install from source
-
-Installation via git is performed by cloning the repo into your local gnome-shell extensions directory (usually ``~/.local/share/gnome-shell/extensions/``):
-
-```bash
-$ git clone https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator.git <extensions-dir>/clipboard-indicator@tudmotu.com
-```
-
-After cloning the repo, the extension is practically installed yet disabled. In order to enable it, run the following command:
-
-```bash
-$ gnome-extensions enable clipboard-indicator@tudmotu.com
-```
 
 ---
 
@@ -67,7 +44,7 @@ Depending on your GNOME version, you will need to install the following Clipboar
 
 Contributions to this project are welcome. Describe your changes in the pull request (I am happy to have unsolicited PRs).
 
-My goal is to maintain this project as a fork that allows contributions more easily than the original project. I will try to keep the project up-to-date with the original project.
+My goal is to maintain this project as a fork (of [Tudmotu's](https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator/blob/master/extension.js)) that allows contributions more easily than the original project. I will try to keep the project up-to-date with the original project.
 
 After implementing a change to the javascript code, type the following to preview the changes: 
 ```

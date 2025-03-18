@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-14 19:49-0800\n"
+"POT-Creation-Date: 2025-03-18 13:07-0700\n"
 "PO-Revision-Date: 2021-07-07 17:43+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -18,56 +18,56 @@ msgstr ""
 "X-Generator: Poedit 2.2.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: extension.js:104
+#: extension.js:109
 msgid "Text will be here"
 msgstr "Gekopieerde tekst wordt hier getoond"
 
-#: extension.js:177
+#: extension.js:179
 msgid "Type here to search..."
 msgstr "Typ om te zoeken…"
 
-#: extension.js:246 prefs.js:179
+#: extension.js:241 prefs.js:212
 msgid "Private mode"
 msgstr "Privémodus"
 
-#: extension.js:260 prefs.js:181
+#: extension.js:255 prefs.js:214
 msgid "Clear history"
 msgstr "Geschiedenis wissen"
 
-#: extension.js:272
+#: extension.js:268
 msgid "Settings"
 msgstr "Instellingen"
 
-#: extension.js:295
+#: extension.js:291
 #, fuzzy
 msgid "Clipboard is empty"
 msgstr "Klembordinhoud"
 
-#: extension.js:578
+#: extension.js:599
 msgid "Clear all?"
 msgstr "Alles wissen?"
 
-#: extension.js:579
+#: extension.js:600
 msgid "Are you sure you want to delete all clipboard items?"
 msgstr "Weet u zeker dat u alle klemborditems wilt wissen?"
 
-#: extension.js:580
+#: extension.js:601
 msgid "This operation cannot be undone."
 msgstr "Dit kan niet ongedaan worden gemaakt."
 
-#: extension.js:582
+#: extension.js:603
 msgid "Clear"
 msgstr "Wissen"
 
-#: extension.js:582 extension.js:741
+#: extension.js:603 extension.js:762
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: extension.js:595
+#: extension.js:616
 msgid "Clipboard history cleared"
 msgstr "De klembordgeschiedenis is gewist"
 
-#: extension.js:740
+#: extension.js:761
 msgid "Copied to clipboard"
 msgstr "Gekopieerd naar het klembord"
 
@@ -147,68 +147,90 @@ msgstr "De klembordgeschiedenis is gewist"
 msgid "Paste on select"
 msgstr ""
 
-#: prefs.js:115
-msgid "UI"
-msgstr ""
-
 #: prefs.js:116
-msgid "Behavior"
-msgstr ""
-
-#: prefs.js:117
-msgid "Limits"
-msgstr ""
-
-#: prefs.js:118
-msgid "Topbar"
-msgstr ""
-
-#: prefs.js:119
-msgid "Notifications"
+msgid "Cache images"
 msgstr ""
 
 #: prefs.js:120
+msgid "UI"
+msgstr ""
+
+#: prefs.js:121
+msgid "Behavior"
+msgstr ""
+
+#: prefs.js:122
+msgid "Limits"
+msgstr ""
+
+#: prefs.js:123
+msgid "Topbar"
+msgstr ""
+
+#: prefs.js:124
+msgid "Notifications"
+msgstr ""
+
+#: prefs.js:125
 msgid "Shortcuts"
 msgstr ""
 
-#: prefs.js:166
+#: prefs.js:136
+msgid "Show Search Bar"
+msgstr ""
+
+#: prefs.js:142
+#, fuzzy
+msgid "Show Private Mode"
+msgstr "Privémodus"
+
+#: prefs.js:148
+msgid "Show Settings Button"
+msgstr ""
+
+#: prefs.js:154
+#, fuzzy
+msgid "Show Clear History Button"
+msgstr "Geschiedenis wissen"
+
+#: prefs.js:199
 msgid "Icon"
 msgstr "Pictogram"
 
-#: prefs.js:167
+#: prefs.js:200
 msgid "Clipboard Content"
 msgstr "Klembordinhoud"
 
-#: prefs.js:168
+#: prefs.js:201
 msgid "Both"
 msgstr "Beide"
 
-#: prefs.js:169
+#: prefs.js:202
 msgid "Neither"
 msgstr ""
 
-#: prefs.js:180
+#: prefs.js:213
 msgid "Toggle the menu"
 msgstr "Menu tonen/verbergen"
 
-#: prefs.js:182
+#: prefs.js:215
 msgid "Previous entry"
 msgstr "Vorig item"
 
-#: prefs.js:183
+#: prefs.js:216
 msgid "Next entry"
 msgstr "Volgend item"
 
-#: prefs.js:188
+#: prefs.js:221
 #, fuzzy
 msgid "Enable shortcuts"
 msgstr "Sneltoetsen"
 
-#: prefs.js:213
+#: prefs.js:246
 msgid "Disabled"
 msgstr ""
 
-#: prefs.js:222
+#: prefs.js:255
 #, fuzzy
 msgid "Enter shortcut"
 msgstr "Sneltoetsen"

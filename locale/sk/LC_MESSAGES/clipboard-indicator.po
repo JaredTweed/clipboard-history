@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-14 19:49-0800\n"
+"POT-Creation-Date: 2025-03-18 13:07-0700\n"
 "PO-Revision-Date: 2024-05-30 21:35+0200\n"
 "Last-Translator: Jose Riha <jose1711@gmail.com>\n"
 "Language-Team: \n"
@@ -21,55 +21,55 @@ msgstr ""
 "X-Poedit-SearchPath-0: prefs.js\n"
 "X-Poedit-SearchPath-1: extension.js\n"
 
-#: extension.js:104
+#: extension.js:109
 msgid "Text will be here"
 msgstr "Tu bude text"
 
-#: extension.js:177
+#: extension.js:179
 msgid "Type here to search..."
 msgstr "Kliknite sem pre vyhľadávanie..."
 
-#: extension.js:246 prefs.js:179
+#: extension.js:241 prefs.js:212
 msgid "Private mode"
 msgstr "Súkromný režim"
 
-#: extension.js:260 prefs.js:181
+#: extension.js:255 prefs.js:214
 msgid "Clear history"
 msgstr "Vymazanie histórie"
 
-#: extension.js:272
+#: extension.js:268
 msgid "Settings"
 msgstr "Nastavenia"
 
-#: extension.js:295
+#: extension.js:291
 msgid "Clipboard is empty"
 msgstr "Schránka je prázdna"
 
-#: extension.js:578
+#: extension.js:599
 msgid "Clear all?"
 msgstr "Vyčistiť všetko?"
 
-#: extension.js:579
+#: extension.js:600
 msgid "Are you sure you want to delete all clipboard items?"
 msgstr "Naozaj chcete odstrániť všetky položky schránky?"
 
-#: extension.js:580
+#: extension.js:601
 msgid "This operation cannot be undone."
 msgstr "Táto akcia sa nedá odvolať."
 
-#: extension.js:582
+#: extension.js:603
 msgid "Clear"
 msgstr "Vyčistiť"
 
-#: extension.js:582 extension.js:741
+#: extension.js:603 extension.js:762
 msgid "Cancel"
 msgstr "Zrušiť"
 
-#: extension.js:595
+#: extension.js:616
 msgid "Clipboard history cleared"
 msgstr "História schránky vymazaná"
 
-#: extension.js:740
+#: extension.js:761
 msgid "Copied to clipboard"
 msgstr "Skopírované do schránky"
 
@@ -148,67 +148,90 @@ msgstr "História schránky vymazaná"
 msgid "Paste on select"
 msgstr ""
 
-#: prefs.js:115
+#: prefs.js:116
+msgid "Cache images"
+msgstr ""
+
+#: prefs.js:120
 msgid "UI"
 msgstr "Rozhranie"
 
-#: prefs.js:116
+#: prefs.js:121
 msgid "Behavior"
 msgstr ""
 
-#: prefs.js:117
+#: prefs.js:122
 msgid "Limits"
 msgstr "Limity"
 
-#: prefs.js:118
+#: prefs.js:123
 msgid "Topbar"
 msgstr "Vrchný riadok"
 
-#: prefs.js:119
+#: prefs.js:124
 msgid "Notifications"
 msgstr "Upozornenia"
 
-#: prefs.js:120
+#: prefs.js:125
 msgid "Shortcuts"
 msgstr "Skratky"
 
-#: prefs.js:166
+#: prefs.js:136
+msgid "Show Search Bar"
+msgstr ""
+
+#: prefs.js:142
+#, fuzzy
+msgid "Show Private Mode"
+msgstr "Súkromný režim"
+
+#: prefs.js:148
+#, fuzzy
+msgid "Show Settings Button"
+msgstr "Zobraziť tlačidlá na vloženie"
+
+#: prefs.js:154
+#, fuzzy
+msgid "Show Clear History Button"
+msgstr "Zobraziť tlačidlá na vloženie"
+
+#: prefs.js:199
 msgid "Icon"
 msgstr "Ikona"
 
-#: prefs.js:167
+#: prefs.js:200
 msgid "Clipboard Content"
 msgstr "Obsah schránky"
 
-#: prefs.js:168
+#: prefs.js:201
 msgid "Both"
 msgstr "Obidve"
 
-#: prefs.js:169
+#: prefs.js:202
 msgid "Neither"
 msgstr ""
 
-#: prefs.js:180
+#: prefs.js:213
 msgid "Toggle the menu"
 msgstr "Prepnutie ponuky"
 
-#: prefs.js:182
+#: prefs.js:215
 msgid "Previous entry"
 msgstr "Predchádzajúca položka"
 
-#: prefs.js:183
+#: prefs.js:216
 msgid "Next entry"
 msgstr "Nasledujúca položka"
 
-#: prefs.js:188
+#: prefs.js:221
 msgid "Enable shortcuts"
 msgstr "Povoliť klávesové skratky"
 
-#: prefs.js:213
+#: prefs.js:246
 msgid "Disabled"
 msgstr "Vypnuté"
 
-#: prefs.js:222
+#: prefs.js:255
 msgid "Enter shortcut"
 msgstr "Zadajte klávesovú skratku"
 

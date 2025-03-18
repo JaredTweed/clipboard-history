@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-shell-extension-clipboard-indicator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-14 19:49-0800\n"
+"POT-Creation-Date: 2025-03-18 13:07-0700\n"
 "PO-Revision-Date: 2020-10-05 23:34+0200\n"
 "Last-Translator: Ibai Oihanguren Sala <ibai@oihanguren.com>\n"
 "Language-Team: \n"
@@ -15,56 +15,56 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:104
+#: extension.js:109
 msgid "Text will be here"
 msgstr "Testua hemen azalduko da"
 
-#: extension.js:177
+#: extension.js:179
 msgid "Type here to search..."
 msgstr "Idatzi hemen bilatzeko..."
 
-#: extension.js:246 prefs.js:179
+#: extension.js:241 prefs.js:212
 msgid "Private mode"
 msgstr "Modu pribatua"
 
-#: extension.js:260 prefs.js:181
+#: extension.js:255 prefs.js:214
 msgid "Clear history"
 msgstr "Garbitu historia"
 
-#: extension.js:272
+#: extension.js:268
 msgid "Settings"
 msgstr "Ezarpenak"
 
-#: extension.js:295
+#: extension.js:291
 #, fuzzy
 msgid "Clipboard is empty"
 msgstr "Arbelaren edukia"
 
-#: extension.js:578
+#: extension.js:599
 msgid "Clear all?"
 msgstr "Guztia garbitu?"
 
-#: extension.js:579
+#: extension.js:600
 msgid "Are you sure you want to delete all clipboard items?"
 msgstr "Ziur arbeleko elementu guztiak kendu nahi dituzula?"
 
-#: extension.js:580
+#: extension.js:601
 msgid "This operation cannot be undone."
 msgstr "Ezin da eragiketa hau desegin."
 
-#: extension.js:582
+#: extension.js:603
 msgid "Clear"
 msgstr "Garbitu"
 
-#: extension.js:582 extension.js:741
+#: extension.js:603 extension.js:762
 msgid "Cancel"
 msgstr "Utzi"
 
-#: extension.js:595
+#: extension.js:616
 msgid "Clipboard history cleared"
 msgstr "Arbelaren historia garbituta"
 
-#: extension.js:740
+#: extension.js:761
 msgid "Copied to clipboard"
 msgstr "Arbelera kopiatuta"
 
@@ -144,68 +144,90 @@ msgstr "Arbelaren historia garbituta"
 msgid "Paste on select"
 msgstr ""
 
-#: prefs.js:115
-msgid "UI"
-msgstr ""
-
 #: prefs.js:116
-msgid "Behavior"
-msgstr ""
-
-#: prefs.js:117
-msgid "Limits"
-msgstr ""
-
-#: prefs.js:118
-msgid "Topbar"
-msgstr ""
-
-#: prefs.js:119
-msgid "Notifications"
+msgid "Cache images"
 msgstr ""
 
 #: prefs.js:120
+msgid "UI"
+msgstr ""
+
+#: prefs.js:121
+msgid "Behavior"
+msgstr ""
+
+#: prefs.js:122
+msgid "Limits"
+msgstr ""
+
+#: prefs.js:123
+msgid "Topbar"
+msgstr ""
+
+#: prefs.js:124
+msgid "Notifications"
+msgstr ""
+
+#: prefs.js:125
 msgid "Shortcuts"
 msgstr ""
 
-#: prefs.js:166
+#: prefs.js:136
+msgid "Show Search Bar"
+msgstr ""
+
+#: prefs.js:142
+#, fuzzy
+msgid "Show Private Mode"
+msgstr "Modu pribatua"
+
+#: prefs.js:148
+msgid "Show Settings Button"
+msgstr ""
+
+#: prefs.js:154
+#, fuzzy
+msgid "Show Clear History Button"
+msgstr "Garbitu historia"
+
+#: prefs.js:199
 msgid "Icon"
 msgstr "Ikonoa"
 
-#: prefs.js:167
+#: prefs.js:200
 msgid "Clipboard Content"
 msgstr "Arbelaren edukia"
 
-#: prefs.js:168
+#: prefs.js:201
 msgid "Both"
 msgstr "Biak"
 
-#: prefs.js:169
+#: prefs.js:202
 msgid "Neither"
 msgstr ""
 
-#: prefs.js:180
+#: prefs.js:213
 msgid "Toggle the menu"
 msgstr "Erakutsi/ezkutatu menua"
 
-#: prefs.js:182
+#: prefs.js:215
 msgid "Previous entry"
 msgstr "Aurreko sarrera"
 
-#: prefs.js:183
+#: prefs.js:216
 msgid "Next entry"
 msgstr "Hurrengo sarrera"
 
-#: prefs.js:188
+#: prefs.js:221
 #, fuzzy
 msgid "Enable shortcuts"
 msgstr "Laster-teklak"
 
-#: prefs.js:213
+#: prefs.js:246
 msgid "Disabled"
 msgstr ""
 
-#: prefs.js:222
+#: prefs.js:255
 #, fuzzy
 msgid "Enter shortcut"
 msgstr "Laster-teklak"

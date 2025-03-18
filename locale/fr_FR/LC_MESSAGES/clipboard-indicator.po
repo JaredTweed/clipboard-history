@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-16 11:48+0300\n"
+"POT-Creation-Date: 2025-03-18 13:07-0700\n"
 "PO-Revision-Date: 2020-05-04 11:15+0200\n"
 "Last-Translator: Wedone <wedoneofficiel@outlook.fr>\n"
 "Language-Team: \n"
@@ -18,181 +18,223 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: extension.js:102
+#: extension.js:109
 msgid "Text will be here"
 msgstr "(Vide)"
 
-#: extension.js:171
+#: extension.js:179
 msgid "Type here to search..."
 msgstr "Tapez ici pour chercher ..."
 
-#: extension.js:240 prefs.js:163
+#: extension.js:241 prefs.js:212
 msgid "Private mode"
 msgstr "Mode privé"
 
-#: extension.js:254 prefs.js:165
+#: extension.js:255 prefs.js:214
 msgid "Clear history"
 msgstr "Vider l'historique"
 
-#: extension.js:266
+#: extension.js:268
 msgid "Settings"
 msgstr "Paramètres"
 
-#: extension.js:289
+#: extension.js:291
 #, fuzzy
 msgid "Clipboard is empty"
 msgstr "Contenu"
 
-#: extension.js:552
+#: extension.js:599
 msgid "Clear all?"
 msgstr "Tout effacer ?"
 
-#: extension.js:553
+#: extension.js:600
 msgid "Are you sure you want to delete all clipboard items?"
 msgstr "Etes-vous sûr de vouloir tout effacer ?"
 
-#: extension.js:554
+#: extension.js:601
 msgid "This operation cannot be undone."
 msgstr "Cette action ne peut être annulée."
 
-#: extension.js:556
+#: extension.js:603
 msgid "Clear"
 msgstr "Effacer"
 
-#: extension.js:556 extension.js:714
+#: extension.js:603 extension.js:762
 msgid "Cancel"
 msgstr "Annuler"
 
-#: extension.js:569
+#: extension.js:616
 msgid "Clipboard history cleared"
 msgstr "Historique vidé"
 
-#: extension.js:713
+#: extension.js:761
 msgid "Copied to clipboard"
 msgstr "Copié dans le presse-papier"
 
-#: prefs.js:28
+#: prefs.js:29
 msgid "History Size"
 msgstr "Taille de l'historique"
 
-#: prefs.js:37
+#: prefs.js:38
 msgid "Preview Size (characters)"
 msgstr "Longueur de l'aperçu (caractères)"
 
-#: prefs.js:46
+#: prefs.js:47
 #, fuzzy
 msgid "Max cache file size (MB)"
 msgstr "Taille max du cache (Kio)"
 
-#: prefs.js:55
+#: prefs.js:56
 msgid "Number of characters in top bar"
 msgstr "Nombre de caractères dans le panneau"
 
-#: prefs.js:64
+#: prefs.js:65
 msgid "What to show in top bar"
 msgstr "Afficher dans le panneau"
 
-#: prefs.js:69
+#: prefs.js:70
 #, fuzzy
 msgid "Remove down arrow in top bar"
 msgstr "Supprimer la flèche vers le bas dans le panneau"
 
-#: prefs.js:73
+#: prefs.js:74
 #, fuzzy
 msgid "Cache only pinned items"
 msgstr "Ne mémoriser que les favoris"
 
-#: prefs.js:77
+#: prefs.js:78
 msgid "Show notification on copy"
 msgstr "Afficher une notification à chaque copie"
 
-#: prefs.js:81
+#: prefs.js:82
 #, fuzzy
 msgid "Show confirmation on Clear History"
 msgstr "Afficher une notification à chaque copie"
 
-#: prefs.js:85
+#: prefs.js:86
 msgid "Remove whitespace around text"
 msgstr "Supprimer les espaces autour du texte"
 
-#: prefs.js:89
+#: prefs.js:90
 msgid "Move item to the top after selection"
 msgstr "Déplacer l'élément sélectionné en haut"
 
-#: prefs.js:93
+#: prefs.js:94
 msgid "Keep selected entry after Clear History"
 msgstr "Conserver l'entrée sélectionnée après l'effacement de l'historique"
 
-#: prefs.js:97
+#: prefs.js:98
 msgid "Show paste buttons"
 msgstr "Afficher les boutons de collage"
 
-#: prefs.js:98
+#: prefs.js:99
 msgid "Adds a paste button to each entry that lets you paste it directly"
-msgstr "Ajout d'un bouton \"coller\" à chaque entrée qui vous permet de la coller directement"
+msgstr ""
+"Ajout d'un bouton \"coller\" à chaque entrée qui vous permet de la coller "
+"directement"
 
-#: prefs.js:102
+#: prefs.js:103
 msgid "Place the pinned section on the bottom"
 msgstr "Placer la section épinglée sur le fond"
 
-#: prefs.js:103
+#: prefs.js:104
 msgid "Requires restarting the extension"
 msgstr "Requiert le redémarrage de l'extension"
 
-#: prefs.js:106
+#: prefs.js:108
+#, fuzzy
+msgid "Clear clipboard history on system reboot"
+msgstr "Historique vidé"
+
+#: prefs.js:112
+msgid "Paste on select"
+msgstr ""
+
+#: prefs.js:116
+msgid "Cache images"
+msgstr ""
+
+#: prefs.js:120
 msgid "UI"
 msgstr "UI"
 
-#: prefs.js:107
+#: prefs.js:121
+msgid "Behavior"
+msgstr ""
+
+#: prefs.js:122
 msgid "Limits"
 msgstr "limites"
 
-#: prefs.js:108
+#: prefs.js:123
 msgid "Topbar"
 msgstr "Barre supérieure"
 
-#: prefs.js:109
+#: prefs.js:124
 msgid "Notifications"
 msgstr "Notifications"
 
-#: prefs.js:110
+#: prefs.js:125
 msgid "Shortcuts"
 msgstr "Raccourcis"
 
-#: prefs.js:151
+#: prefs.js:136
+msgid "Show Search Bar"
+msgstr ""
+
+#: prefs.js:142
+#, fuzzy
+msgid "Show Private Mode"
+msgstr "Mode privé"
+
+#: prefs.js:148
+#, fuzzy
+msgid "Show Settings Button"
+msgstr "Afficher les boutons de collage"
+
+#: prefs.js:154
+#, fuzzy
+msgid "Show Clear History Button"
+msgstr "Afficher les boutons de collage"
+
+#: prefs.js:199
 msgid "Icon"
 msgstr "Icône"
 
-#: prefs.js:152
+#: prefs.js:200
 msgid "Clipboard Content"
 msgstr "Contenu"
 
-#: prefs.js:153
+#: prefs.js:201
 msgid "Both"
 msgstr "Les deux"
 
-#: prefs.js:164
+#: prefs.js:202
+msgid "Neither"
+msgstr ""
+
+#: prefs.js:213
 msgid "Toggle the menu"
 msgstr "Afficher/cacher le menu"
 
-#: prefs.js:166
+#: prefs.js:215
 msgid "Previous entry"
 msgstr "Entrée précédente"
 
-#: prefs.js:167
+#: prefs.js:216
 msgid "Next entry"
 msgstr "Entrée suivante"
 
-#: prefs.js:172
+#: prefs.js:221
 #, fuzzy
 msgid "Enable shortcuts"
 msgstr "Raccourcis clavier"
 
-#: prefs.js:197
+#: prefs.js:246
 msgid "Disabled"
 msgstr "Désactivé"
 
-#: prefs.js:206
+#: prefs.js:255
 #, fuzzy
 msgid "Enter shortcut"
 msgstr "Raccourcis clavier"

@@ -182,14 +182,12 @@ const ClipboardIndicator = GObject.registerClass({
       y_expand: true,
       primary_icon: new St.Icon({ icon_name: 'edit-find-symbolic' })
     });
-
     that.searchEntry.get_clutter_text().connect(
       'text-changed',
       that._onSearchTextChanged.bind(that)
     );
-
     that._entryItem.add_child(that.searchEntry);
-    // (We'll add the search bar to the menu later only if SHOW_SEARCH_BAR is true)
+    // (Do not add the search bar here; it’s handled later by #showElements())
 
     that.menu.connect('open-state-changed', (self, open) => {
       this._setFocusOnOpenTimeout = setTimeout(() => {
@@ -197,9 +195,10 @@ const ClipboardIndicator = GObject.registerClass({
           if (this.clipItemsRadioGroup.length > 0) {
             that.searchEntry.set_text('');
             global.stage.set_key_focus(that.searchEntry);
-          }
-          else {
-            global.stage.set_key_focus(that.privateModeMenuItem);
+          } else {
+            // If no items, focus the private mode button if available.
+            if (that.privateModeMenuItem)
+              global.stage.set_key_focus(that.privateModeMenuItem.actor);
           }
         }
       }, 50);
@@ -230,13 +229,14 @@ const ClipboardIndicator = GObject.registerClass({
     if (PINNED_ON_BOTTOM) {
       that.menu.addMenuItem(that.scrollViewMenuSection);
       that.menu.addMenuItem(that.scrollViewFavoritesMenuSection);
-    }
-    else {
+    } else {
       that.menu.addMenuItem(that.scrollViewFavoritesMenuSection);
       that.menu.addMenuItem(that.scrollViewMenuSection);
     }
 
-    // --- Private Mode Switch ---
+    // --- Create Toggled Items (Do not add them yet) ---
+
+    // Private Mode Switch
     that.privateModeMenuItem = new PopupMenu.PopupSwitchMenuItem(
       _("Private mode"), PRIVATEMODE, { reactive: true }
     );
@@ -249,9 +249,9 @@ const ClipboardIndicator = GObject.registerClass({
       }),
       0
     );
-    // Do not add it here—#showElements() will handle it
+    // (Not added to menu here; handled in #showElements)
 
-    // --- Clear History Button ---
+    // Clear History Button
     this.clearMenuItem = new PopupMenu.PopupMenuItem(_('Clear history'));
     this.clearMenuItem.insert_child_at_index(
       new St.Icon({
@@ -262,9 +262,9 @@ const ClipboardIndicator = GObject.registerClass({
       0
     );
     this.clearMenuItem.connect('activate', that._removeAll.bind(that));
-    // Do not add it here—#showElements() will handle it
+    // (Not added to menu here; handled in #showElements)
 
-    // --- Settings Button ---
+    // Settings Button
     this.settingsMenuItem = new PopupMenu.PopupMenuItem(_('Settings'));
     this.settingsMenuItem.insert_child_at_index(
       new St.Icon({
@@ -275,7 +275,7 @@ const ClipboardIndicator = GObject.registerClass({
       0
     );
     this.settingsMenuItem.connect('activate', that._openSettings.bind(that));
-    // Do not add it here—#showElements() will handle it
+    // (Not added to menu here; handled in #showElements)
 
     // --- Empty State Section ---
     this.emptyStateSection = new St.BoxLayout({
@@ -299,7 +299,7 @@ const ClipboardIndicator = GObject.registerClass({
       that._selectMenuItem(clipItemsArr[lastIdx]);
     }
 
-    // Show/hide elements based on flags
+    // Finally, let #showElements() handle the placement of all toggled items.
     this.#showElements();
   }
 
@@ -321,7 +321,7 @@ const ClipboardIndicator = GObject.registerClass({
         this.menu.box.remove_child(this._entryItem);
     }
 
-    // --- Always handle favorites & history separators as before ---
+    // --- Handle Favorites Separator ---
     if (this.clipItemsRadioGroup.length > 0) {
       if (this.favoritesSection._getMenuItems().length > 0) {
         if (!this.menu.box.contains(this.favoritesSeparator))
@@ -329,53 +329,47 @@ const ClipboardIndicator = GObject.registerClass({
       } else if (this.menu.box.contains(this.favoritesSeparator)) {
         this.menu.box.remove_child(this.favoritesSeparator);
       }
+    }
 
-      if (this.historySection._getMenuItems().length > 0) {
-        if (!this.menu.box.contains(this.historySeparator))
-          this.menu.box.insert_child_above(this.historySeparator, this.scrollViewMenuSection.actor);
-      } else if (this.menu.box.contains(this.historySeparator)) {
+    // --- Handle the History Separator (between history and toggled buttons) ---
+    // Show the history separator only if there are history items and at least one toggle button is enabled.
+    if (this.clipItemsRadioGroup.length > 0 &&
+      this.historySection._getMenuItems().length > 0 &&
+      (SHOW_PRIVATE_MODE || SHOW_SETTINGS_BUTTON || SHOW_CLEAR_HISTORY_BUTTON)) {
+      if (!this.menu.box.contains(this.historySeparator))
+        this.menu.box.insert_child_above(this.historySeparator, this.scrollViewMenuSection.actor);
+    } else {
+      if (this.menu.box.contains(this.historySeparator))
         this.menu.box.remove_child(this.historySeparator);
-      }
-    } else if (!this.menu.box.contains(this.emptyStateSection)) {
+    }
+
+    // --- Handle Empty State ---
+    if (this.clipItemsRadioGroup.length === 0 && !this.menu.box.contains(this.emptyStateSection)) {
       this.#renderEmptyState();
     }
 
-    // --- Handle the Toggled Buttons (Private Mode, Settings, Clear History) ---
+    // --- Handle the Toggled Buttons in Fixed Order ---
+    // First, remove all toggled button actors.
+    if (this.menu.box.contains(this.privateModeMenuItem.actor))
+      this.menu.box.remove_child(this.privateModeMenuItem.actor);
+    if (this.menu.box.contains(this.settingsMenuItem.actor))
+      this.menu.box.remove_child(this.settingsMenuItem.actor);
+    if (this.menu.box.contains(this.clearMenuItem.actor))
+      this.menu.box.remove_child(this.clearMenuItem.actor);
 
-    // ERROR:
-    // REMOVING THESE THREE BUTTONS DOES NOT WORK, BUT ADDING THEM DOES.
-    // THESE BUTTONS ARE ORDERED IN THE ORDER IN WHICH THEY ARE ADDED.
-
-    // Private Mode
+    // Append toggled buttons in the fixed order at the end of the container.
+    let index = this.menu.box.get_n_children(); // Append at the end.
     if (SHOW_PRIVATE_MODE) {
-      if (!this.menu.box.contains(this.privateModeMenuItem))
-        this.menu.addMenuItem(this.privateModeMenuItem);
-    } else {
-      if (this.menu.box.contains(this.privateModeMenuItem))
-        this.menu.removeMenuItem(this.privateModeMenuItem);
+      this.menu.box.insert_child_at_index(this.privateModeMenuItem.actor, index);
+      index++;
     }
-
-    // Settings Button
     if (SHOW_SETTINGS_BUTTON) {
-      if (!this.menu.box.contains(this.settingsMenuItem))
-        this.menu.addMenuItem(this.settingsMenuItem);
-    } else {
-      if (this.menu.box.contains(this.settingsMenuItem))
-        this.menu.removeMenuItem(this.settingsMenuItem);
+      this.menu.box.insert_child_at_index(this.settingsMenuItem.actor, index);
+      index++;
     }
-
-    // Clear History Button
     if (SHOW_CLEAR_HISTORY_BUTTON) {
-      if (!this.menu.box.contains(this.clearMenuItem)) {
-        // If settings button exists, add clear history button just below it.
-        if (this.menu.box.contains(this.settingsMenuItem))
-          this.menu.box.insert_child_below(this.clearMenuItem, this.settingsMenuItem);
-        else
-          this.menu.addMenuItem(this.clearMenuItem);
-      }
-    } else {
-      if (this.menu.box.contains(this.clearMenuItem))
-        this.menu.box.remove_child(this.clearMenuItem);
+      this.menu.box.insert_child_at_index(this.clearMenuItem.actor, index);
+      index++;
     }
   }
 

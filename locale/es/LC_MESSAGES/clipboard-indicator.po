@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-shell-extension-clipboard-indicator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-14 19:49-0800\n"
+"POT-Creation-Date: 2025-03-18 13:07-0700\n"
 "PO-Revision-Date: 2018-03-10 09:43-0600\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: \n"
@@ -18,55 +18,55 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: extension.js:104
+#: extension.js:109
 msgid "Text will be here"
 msgstr "El texto aparecerá aquí"
 
-#: extension.js:177
+#: extension.js:179
 msgid "Type here to search..."
 msgstr "Escriba aquí para buscar..."
 
-#: extension.js:246 prefs.js:179
+#: extension.js:241 prefs.js:212
 msgid "Private mode"
 msgstr "Modo privado"
 
-#: extension.js:260 prefs.js:181
+#: extension.js:255 prefs.js:214
 msgid "Clear history"
 msgstr "Vaciar historial"
 
-#: extension.js:272
+#: extension.js:268
 msgid "Settings"
 msgstr "Configuración"
 
-#: extension.js:295
+#: extension.js:291
 msgid "Clipboard is empty"
 msgstr "El portapapeles está vacío"
 
-#: extension.js:578
+#: extension.js:599
 msgid "Clear all?"
 msgstr "¿Borrar todo?"
 
-#: extension.js:579
+#: extension.js:600
 msgid "Are you sure you want to delete all clipboard items?"
 msgstr "¿Está seguro de que quiere borrar todos los ítems del portapapeles?"
 
-#: extension.js:580
+#: extension.js:601
 msgid "This operation cannot be undone."
 msgstr "Esta operación no puede ser deshecha"
 
-#: extension.js:582
+#: extension.js:603
 msgid "Clear"
 msgstr "Borrar"
 
-#: extension.js:582 extension.js:741
+#: extension.js:603 extension.js:762
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: extension.js:595
+#: extension.js:616
 msgid "Clipboard history cleared"
 msgstr "Historial del portapapeles vaciado"
 
-#: extension.js:740
+#: extension.js:761
 msgid "Copied to clipboard"
 msgstr "Copiado en el portapapeles"
 
@@ -144,67 +144,90 @@ msgstr "Historial del portapapeles vaciado"
 msgid "Paste on select"
 msgstr ""
 
-#: prefs.js:115
+#: prefs.js:116
+msgid "Cache images"
+msgstr ""
+
+#: prefs.js:120
 msgid "UI"
 msgstr "Interfaz de Usuario"
 
-#: prefs.js:116
+#: prefs.js:121
 msgid "Behavior"
 msgstr ""
 
-#: prefs.js:117
+#: prefs.js:122
 msgid "Limits"
 msgstr "Limites"
 
-#: prefs.js:118
+#: prefs.js:123
 msgid "Topbar"
 msgstr "Barra superior"
 
-#: prefs.js:119
+#: prefs.js:124
 msgid "Notifications"
 msgstr "Notificaciones"
 
-#: prefs.js:120
+#: prefs.js:125
 msgid "Shortcuts"
 msgstr "Atajos de teclado"
 
-#: prefs.js:166
+#: prefs.js:136
+msgid "Show Search Bar"
+msgstr ""
+
+#: prefs.js:142
+#, fuzzy
+msgid "Show Private Mode"
+msgstr "Modo privado"
+
+#: prefs.js:148
+#, fuzzy
+msgid "Show Settings Button"
+msgstr "Mostrar botones de pegar"
+
+#: prefs.js:154
+#, fuzzy
+msgid "Show Clear History Button"
+msgstr "Mostrar botones de pegar"
+
+#: prefs.js:199
 msgid "Icon"
 msgstr "Icono"
 
-#: prefs.js:167
+#: prefs.js:200
 msgid "Clipboard Content"
 msgstr "Contenido del portapapeles"
 
-#: prefs.js:168
+#: prefs.js:201
 msgid "Both"
 msgstr "Ambos"
 
-#: prefs.js:169
+#: prefs.js:202
 msgid "Neither"
 msgstr ""
 
-#: prefs.js:180
+#: prefs.js:213
 msgid "Toggle the menu"
 msgstr "Alternar menú"
 
-#: prefs.js:182
+#: prefs.js:215
 msgid "Previous entry"
 msgstr "Entrada anterior"
 
-#: prefs.js:183
+#: prefs.js:216
 msgid "Next entry"
 msgstr "Entrada siguiente"
 
-#: prefs.js:188
+#: prefs.js:221
 msgid "Enable shortcuts"
 msgstr "Habilitar atajos de teclado"
 
-#: prefs.js:213
+#: prefs.js:246
 msgid "Disabled"
 msgstr "Deshabilitado"
 
-#: prefs.js:222
+#: prefs.js:255
 msgid "Enter shortcut"
 msgstr "Introduce atajo de teclado"
 
