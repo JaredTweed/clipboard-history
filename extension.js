@@ -192,11 +192,17 @@ const ClipboardIndicator = GObject.registerClass({
     that.menu.connect('open-state-changed', (self, open) => {
       this._setFocusOnOpenTimeout = setTimeout(() => {
         if (open) {
-          if (this.clipItemsRadioGroup.length > 0) {
+          if (SHOW_SEARCH_BAR && this.clipItemsRadioGroup.length > 0) {
             that.searchEntry.set_text('');
             global.stage.set_key_focus(that.searchEntry);
+          } else if (this.clipItemsRadioGroup.length > 0) {
+            // If the search bar is off, focus the currently selected menu item.
+            let currentItem = this._getCurrentlySelectedItem();
+            if (currentItem) {
+              global.stage.set_key_focus(currentItem.actor);
+            }
           } else {
-            // If no items, focus the private mode button if available.
+            // If no items at all, focus the private mode button (if it exists)
             if (that.privateModeMenuItem)
               global.stage.set_key_focus(that.privateModeMenuItem.actor);
           }
