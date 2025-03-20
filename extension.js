@@ -478,12 +478,22 @@ const ClipboardIndicator = GObject.registerClass({
     menuItem.radioGroup = this.clipItemsRadioGroup;
     // menuItem.buttonPressId = menuItem.connect('activate',
     //     autoSet => this._onMenuItemSelectedAndMenuClose(menuItem, autoSet));
+
+    // menuItem.buttonPressId = menuItem.connect('activate', (autoSet) => {
+    //   if (PASTE_ON_SELECT) {
+    //     this.#pasteItem(menuItem);
+    //   }
+    //   this._onMenuItemSelectedAndMenuClose(menuItem, autoSet);
+    // });
+
     menuItem.buttonPressId = menuItem.connect('activate', (autoSet) => {
-      if (PASTE_ON_SELECT) {
+      const pasteOnSelect = this.extension.settings.get_boolean(PrefsFields.PASTE_ON_SELECT);
+      if (pasteOnSelect) {
         this.#pasteItem(menuItem);
       }
       this._onMenuItemSelectedAndMenuClose(menuItem, autoSet);
     });
+
 
     menuItem.connect('key-focus-in', () => {
       const viewToScroll = menuItem.entry.isFavorite() ?
@@ -505,7 +515,8 @@ const ClipboardIndicator = GObject.registerClass({
           break;
         case Clutter.KEY_KP_Enter:
         case Clutter.KEY_Return:
-          if (PASTE_ON_SELECT) {
+          const pasteOnSelect = this.extension.settings.get_boolean(PrefsFields.PASTE_ON_SELECT);
+          if (pasteOnSelect) {
             this.#pasteItem(menuItem);
           }
           this._onMenuItemSelectedAndMenuClose(menuItem, true);
