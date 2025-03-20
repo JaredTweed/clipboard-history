@@ -479,21 +479,12 @@ const ClipboardIndicator = GObject.registerClass({
     // menuItem.buttonPressId = menuItem.connect('activate',
     //     autoSet => this._onMenuItemSelectedAndMenuClose(menuItem, autoSet));
 
-    // menuItem.buttonPressId = menuItem.connect('activate', (autoSet) => {
-    //   if (PASTE_ON_SELECT) {
-    //     this.#pasteItem(menuItem);
-    //   }
-    //   this._onMenuItemSelectedAndMenuClose(menuItem, autoSet);
-    // });
-
     menuItem.buttonPressId = menuItem.connect('activate', (autoSet) => {
-      const pasteOnSelect = this.extension.settings.get_boolean(PrefsFields.PASTE_ON_SELECT);
-      if (pasteOnSelect) {
+      if (PASTE_ON_SELECT) {
         this.#pasteItem(menuItem);
       }
       this._onMenuItemSelectedAndMenuClose(menuItem, autoSet);
     });
-
 
     menuItem.connect('key-focus-in', () => {
       const viewToScroll = menuItem.entry.isFavorite() ?
@@ -515,8 +506,7 @@ const ClipboardIndicator = GObject.registerClass({
           break;
         case Clutter.KEY_KP_Enter:
         case Clutter.KEY_Return:
-          const pasteOnSelect = this.extension.settings.get_boolean(PrefsFields.PASTE_ON_SELECT);
-          if (pasteOnSelect) {
+          if (PASTE_ON_SELECT) {
             this.#pasteItem(menuItem);
           }
           this._onMenuItemSelectedAndMenuClose(menuItem, true);
@@ -1152,18 +1142,19 @@ const ClipboardIndicator = GObject.registerClass({
     this.#updateClipboard(menuItem.entry);
     this._pastingKeypressTimeout = setTimeout(() => {
       if (this.keyboard.purpose === Clutter.InputContentPurpose.TERMINAL) {
+        // Use the Terminal paste sequence.
         this.keyboard.press(Clutter.KEY_Control_L);
         this.keyboard.press(Clutter.KEY_Shift_L);
         this.keyboard.press(Clutter.KEY_Insert);
         this.keyboard.release(Clutter.KEY_Insert);
         this.keyboard.release(Clutter.KEY_Shift_L);
         this.keyboard.release(Clutter.KEY_Control_L);
-      }
-      else {
-        this.keyboard.press(Clutter.KEY_Shift_L);
-        this.keyboard.press(Clutter.KEY_Insert);
-        this.keyboard.release(Clutter.KEY_Insert);
-        this.keyboard.release(Clutter.KEY_Shift_L);
+      } else {
+        // Use the standard Ctrl+V for non-terminal apps.
+        this.keyboard.press(Clutter.KEY_Control_L);
+        this.keyboard.press(Clutter.KEY_V);
+        this.keyboard.release(Clutter.KEY_V);
+        this.keyboard.release(Clutter.KEY_Control_L);
       }
 
       this._pastingResetTimeout = setTimeout(() => {
