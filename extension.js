@@ -506,9 +506,7 @@ const ClipboardIndicator = GObject.registerClass({
           break;
         case Clutter.KEY_KP_Enter:
         case Clutter.KEY_Return:
-          if (PASTE_ON_SELECT) {
-            this.#pasteItem(menuItem);
-          }
+          // Let the 'activate' event handle the paste (to prevent double paste)
           this._onMenuItemSelectedAndMenuClose(menuItem, true);
           break;
       }
@@ -929,6 +927,7 @@ const ClipboardIndicator = GObject.registerClass({
     this._settingsChangedId = this.extension.settings.connect('changed',
       this._onSettingsChange.bind(this));
 
+    this._onSettingsChange();
     this._fetchSettings();
 
     if (ENABLE_KEYBINDING)
@@ -1150,18 +1149,31 @@ const ClipboardIndicator = GObject.registerClass({
         this.keyboard.release(Clutter.KEY_Shift_L);
         this.keyboard.release(Clutter.KEY_Control_L);
       } else {
-        // Use the standard Ctrl+V for non-terminal apps.
-        this.keyboard.press(Clutter.KEY_Control_L);
-        this.keyboard.press(Clutter.KEY_V);
-        this.keyboard.release(Clutter.KEY_V);
-        this.keyboard.release(Clutter.KEY_Control_L);
+        /* Non-terminal apps. Weirdly, before before this extensions 
+        settings are opened, only pasting via Ctrl+V works via clutter. 
+        After the gnome extension settings are opened, only pasting via
+        Shift+Insert works via clutter. Thus we have both, and only 
+        exactly one will always work. However, I am only keeping one on 
+        because sometimes they both paste.*/
+
+        // // Pasting via Ctrl+V
+        // this.keyboard.press(Clutter.KEY_Control_L);
+        // this.keyboard.press(Clutter.KEY_V);
+        // this.keyboard.release(Clutter.KEY_V);
+        // this.keyboard.release(Clutter.KEY_Control_L);
+
+        // Pasting via Shift+Insert
+        this.keyboard.press(Clutter.KEY_Shift_L);
+        this.keyboard.press(Clutter.KEY_Insert);
+        this.keyboard.release(Clutter.KEY_Insert);
+        this.keyboard.release(Clutter.KEY_Shift_L);
       }
 
       this._pastingResetTimeout = setTimeout(() => {
         this.preventIndicatorUpdate = false;
         this.#updateClipboard(currentlySelected.entry);
-      }, 50);
-    }, 50);
+      }, 150);
+    }, 150);
   }
 
   #clearTimeouts() {
