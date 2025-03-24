@@ -3,10 +3,10 @@
     "46",
     "47"
   ],
-  "uuid": "clipboard-history@jaredtweed.com",
-  "name": "Clipboard History",
+  "uuid": "copy-paste-history@jaredtweed.com",
+  "name": "Copy-Paste History",
   "description": "A GNOME clipboard history extension",
   "url": "https://github.com/jaredtweed/clipboard-history",
-  "gettext-domain": "clipboard-history",
-  "settings-schema": "org.gnome.shell.extensions.clipboard-history"
+  "gettext-domain": "copy-paste-history",
+  "settings-schema": "org.gnome.shell.extensions.copy-paste-history"
 }
