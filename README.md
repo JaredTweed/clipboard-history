@@ -1,4 +1,4 @@
-# 📋 Clipboard History
+# 📋 Copy-Paste History
 
 Clipboard manager for GNOME
 
