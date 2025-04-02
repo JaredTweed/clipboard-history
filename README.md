@@ -1,8 +1,12 @@
 # 📋 Copy-Paste History
 
-Clipboard manager for GNOME
+Customizable clipboard manager for GNOME
 
-<img src="./screenshot.png" alt="A screenshot of the clipboard manager, showing clipboard history including images" width="400">
+<div style="display: flex;">
+  <img src="https://github.com/user-attachments/assets/ad0fe0ea-4012-4482-8ae7-71725ec0ded1" alt="screenshot_8006" height="400">
+  <img src="./screenshot.png" alt="A screenshot of the clipboard manager, showing clipboard history including images" height="400">
+</div>
+
 ---
 
 ## 🧰 Features:
